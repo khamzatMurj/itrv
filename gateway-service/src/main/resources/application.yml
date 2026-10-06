@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: r1
+              uri: http://host.docker.internal:8081/
+              predicates:
+                - Path=/customers/**
+            - id: r2
+              uri: http://host.docker.internal:8082/
+              predicates:
+                - Path=/products/**
+
+    discovery:
+      enabled: false
+
+server:
+  port: 8888
